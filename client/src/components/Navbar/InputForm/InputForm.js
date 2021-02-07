@@ -7,7 +7,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
       margin: theme.spacing(1),
-      width: 800,
+      width: '100%',
     },
   },
 }));
@@ -17,12 +17,12 @@ const InputForm = ({ handleClose }) => {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [age, setAge] = useState('')
-  const [remarks, setRemarks] = useState('')
+  const [location, setLocation] = useState('')
   
   const handleSubmit = e => {
     e.preventDefault()
     
-    createCustomer(firstName, lastName, age, remarks).then(res => console.log(res))
+    createCustomer(firstName, lastName, age, location).then(res => console.log(res))
 
     handleClose(true)
   }
@@ -30,11 +30,11 @@ const InputForm = ({ handleClose }) => {
   return (
     <>
       <form className={classes.root} noValidate autoComplete="off" onSubmit={handleSubmit}>
-        <Typography variant="h5">Customer Details</Typography>
-        <TextField id="outlined-basic" label="First Name" variant="outlined" onChange={e => setFirstName(e.target.value)}/>
-        <TextField id="outlined-basic" label="Last Name" variant="outlined" onChange={e => setLastName(e.target.value)}/>
-        <TextField id="outlined-basic" label="Age" variant="outlined" onChange={e => setAge(e.target.value)}/>
-        <TextField id="outlined-basic" label="Remarks" variant="outlined" onChange={e => setRemarks(e.target.value)}/>
+        <Typography variant="h5">New Customer Details</Typography>
+        <TextField id="filled-basic" label="First Name" variant="filled" onChange={e => setFirstName(e.target.value)}/>
+        <TextField id="filled-basic" type=""label="Last Name" variant="filled" onChange={e => setLastName(e.target.value)}/>
+        <TextField id="outlined-basic" label="Age" type="number" variant="outlined" onChange={e => setAge(e.target.value)}/>
+        <TextField id="filled-basic" label="Location" variant="filled" onChange={e => setLocation(e.target.value)}/>
         <Button variant="contained" color="primary" type="submit">Submit</Button>
       </form>      
     </>

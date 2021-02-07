@@ -8,7 +8,7 @@ export const getAllCustomer = async () => {
   }
 }
 
-export const createCustomer = async (firstName, lastName, age, remarks) => {
+export const createCustomer = async (firstName, lastName, age, location) => {
   try {
     const result = await fetch(`/customers`, {
       method: 'POST',
@@ -19,7 +19,7 @@ export const createCustomer = async (firstName, lastName, age, remarks) => {
         firstName,
         lastName,
         age,
-        remarks
+        location
       })
     })
 

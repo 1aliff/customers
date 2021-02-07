@@ -1,29 +1,44 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles';
-import { TableContainer, Table, TableHead, TableCell, TableRow, TableBody, Paper, Typography, Button } from '@material-ui/core'
+import { Modal, Fade, Backdrop, TableContainer, Table, TableHead, TableCell, TableRow, TableBody, Paper, Typography, Button } from '@material-ui/core'
 
 import { deleteUser } from '../../api/index'
+import UpdateForm from './UpdateForm/UpdateForm'
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   table: {
     minWidth: 650,
     // padding: 20
   },
-});
+  modal: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  paper: {
+    backgroundColor: theme.palette.background.paper,
+    border: '2px solid #000',
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+  },
+}));
 
 const TABLE_HEADER = [
   'ID',
   'First Name',
   'Last Name',
   'Age',
-  'Remarks',
+  'Location',
   'Action'
 ]
 
 const TableData = ({ customers }) => {
   const classes = useStyles();
-
   const total = customers.length
+  const [open, setOpen] = useState(false) // modal state
+
+  const handleOpen = () => setOpen(true)
+  const handleClose = () => setOpen(false)
 
   const handleDelete = (id) => {
     deleteUser(id)
@@ -50,16 +65,40 @@ const TableData = ({ customers }) => {
                 <TableCell align="center" key={customer.firstName} >{customer.firstName}</TableCell>
                 <TableCell align="center" key={customer.lastName} >{customer.lastName}</TableCell>
                 <TableCell align="center" key={customer.age} >{customer.age}</TableCell>
-                <TableCell align="center" key={customer.remarks}>{customer.remarks}</TableCell>
+                <TableCell align="center" key={customer.location}>{customer.location}</TableCell>
                 <TableCell align="center" key={customer.id + 1}>
                 <Button 
                     variant="contained" 
                     color="primary"
                     style={{ marginRight: 10 }}
-                    onClick={() => console.log('Editted triggered')}
+                    onClick={() => handleOpen()}
                   >
                       Edit
                   </Button>
+
+                  {/* modal */}
+                    <Modal
+                      aria-labelledby="transition-modal-title"
+                      aria-describedby="transition-modal-description"
+                      className={classes.modal}
+                      open={open}
+                      onClose={handleClose}
+                      closeAfterTransition
+                      BackdropComponent={Backdrop}
+                      BackdropProps={{
+                        timeout: 500,
+                      }}
+                    >
+                      <Fade in={open}>
+                        <div className={classes.paper}>
+                          <UpdateForm
+                            id="transition-modal-title"
+                            handleClose={handleClose}
+                            customer={customer}
+                          />
+                        </div>
+                      </Fade>
+                    </Modal>
 
                   <Button 
                     variant="contained" 
