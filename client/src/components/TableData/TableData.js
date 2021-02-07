@@ -52,7 +52,24 @@ const TableData = ({ customers }) => {
                 <TableCell align="center" key={customer.age} >{customer.age}</TableCell>
                 <TableCell align="center" key={customer.remarks}>{customer.remarks}</TableCell>
                 <TableCell align="center" key={customer.id + 1}>
-                  <Button variant="contained" color="secondary" onClick={() => handleDelete(customer.id)}>Delete</Button>
+                <Button 
+                    variant="contained" 
+                    color="primary"
+                    style={{ marginRight: 10 }}
+                    onClick={() => console.log('Editted triggered')}
+                  >
+                      Edit
+                  </Button>
+
+                  <Button 
+                    variant="contained" 
+                    color="secondary" 
+                    onClick={() => 
+                      window.confirm(`Are you sure you want to delete this?`) && 
+                      handleDelete(customer.id)}
+                  >
+                      Delete
+                  </Button>
                 </TableCell>
               </TableRow>
             ))}
