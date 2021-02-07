@@ -16,7 +16,8 @@ export const createCustomer = (req, res) => {
 export const deleteCustomer = (req, res) => {
   let { id } = req.params
 
-  customers = customers.map(cust => cust.id !== id)
+  customers = customers.filter(cust => cust.id !== id)
+  console.log(customers)
   res.send(`User with ${id} id successfully deleted`)
 }
 
