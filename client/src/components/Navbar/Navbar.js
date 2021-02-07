@@ -34,7 +34,6 @@ const Navbar = () => {
   const [open, setOpen]= useState(false) // modal state
 
   const handleOpen = () => setOpen(true)
-
   const handleClose = () => setOpen(false)
 
   return (
@@ -62,8 +61,9 @@ const Navbar = () => {
       >
         <Fade in={open}>
           <div className={classes.paper}>
-            <InputForm 
+            <InputForm
               id="transition-modal-title"
+              handleClose={handleClose}
             />
             {/* <h2 id="transition-modal-title">Transition modal</h2>
             <p id="transition-modal-description">react-transition-group animates me.</p> */}

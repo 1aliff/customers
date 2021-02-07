@@ -8,7 +8,7 @@ export const getAllCustomer = async () => {
   }
 }
 
-export const createCustomer = async () => {
+export const createCustomer = async (firstName, lastName, age, remarks) => {
   try{
     const result = await fetch(`/customers`, {
       method: 'POST',
@@ -16,7 +16,10 @@ export const createCustomer = async () => {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        // customer: data
+        firstName,
+        lastName,
+        age,
+        remarks
       })
     })
     return await result
