@@ -9,7 +9,7 @@ export const getAllCustomer = async () => {
 }
 
 export const createCustomer = async (firstName, lastName, age, remarks) => {
-  try{
+  try {
     const result = await fetch(`/customers`, {
       method: 'POST',
       headers: {
@@ -22,8 +22,27 @@ export const createCustomer = async (firstName, lastName, age, remarks) => {
         remarks
       })
     })
+
     return await result
-  }catch (err){
+  }catch (err) {
+    alert(`Something went wrong: ${err}`)
+  }
+}
+
+
+export const deleteUser = async (id) => {
+  try {
+    const result = await fetch(`/customers/${id}`, {
+      method: 'DELETE',
+      // headers: {
+      //   'Content-Type': 'application/json'
+      // },
+      body: JSON.stringify({
+        id
+      })
+    })
+    return await result
+  } catch (err) {
     alert(`Something went wrong: ${err}`)
   }
 }

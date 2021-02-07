@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { Navbar } from './components/'
+import { Navbar, TableData } from './components/'
+import { getAllCustomer } from './api/index.js'
 import './App.css';
-import {getAllCustomer} from './api/index.js'
 
 function App() {
   const [customers, setCustomers] = useState([])
+  const [flag, setFlag] = useState([])
+
   console.log('state', customers)
 
   useEffect(() => {
@@ -16,9 +18,17 @@ function App() {
     const result = await getAllCustomer();
     setCustomers(result)
   }
+
+  // const handleAdd
+  
   return (
     <div className="App">
-      <Navbar />
+      <Navbar 
+        // flag={flag}
+      />
+      <TableData 
+        customers={customers}
+      />
     </div>
   );
 }
