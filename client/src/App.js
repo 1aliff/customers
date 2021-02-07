@@ -4,27 +4,22 @@ import { getAllCustomer } from './api/index.js'
 import './App.css';
 
 function App() {
-  const [customers, setCustomers] = useState([])
-  const [flag, setFlag] = useState([])
-
+  const [customers, setCustomers] = useState([]) // initalFetch
   console.log('state', customers)
 
   useEffect(() => {
     fetchData();
-    console.log(`mounted`)
-  },[])
+    console.log(`mounted`,)
+  },[]) // temp -> will fix this
 
   const fetchData = async () => {
     const result = await getAllCustomer();
     setCustomers(result)
   }
 
-  // const handleAdd
-  
   return (
     <div className="App">
       <Navbar 
-        // flag={flag}
       />
       <TableData 
         customers={customers}

@@ -34,9 +34,9 @@ export const deleteUser = async (id) => {
   try {
     const result = await fetch(`/customers/${id}`, {
       method: 'DELETE',
-      // headers: {
-      //   'Content-Type': 'application/json'
-      // },
+      headers: {
+        'Content-Type': 'application/json'
+      },
       body: JSON.stringify({
         id
       })

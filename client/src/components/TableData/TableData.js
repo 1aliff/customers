@@ -1,7 +1,8 @@
 import React from 'react'
 import { makeStyles } from '@material-ui/core/styles';
-
 import { TableContainer, Table, TableHead, TableCell, TableRow, TableBody, Paper, Typography, Button } from '@material-ui/core'
+
+import { deleteUser } from '../../api/index'
 
 const useStyles = makeStyles({
   table: {
@@ -25,7 +26,7 @@ const TableData = ({ customers }) => {
   const total = customers.length
 
   const handleDelete = (id) => {
-    console.log(`user ${id} deleted`)
+    deleteUser(id)
   }
 
   return (
@@ -44,15 +45,13 @@ const TableData = ({ customers }) => {
           </TableHead>
           <TableBody>
             {customers.map((customer) => (
-              <TableRow key={customer.id}>
-                <TableCell component="th" align="center" scope="row">
-                  {customer.id}
-                </TableCell>
-                <TableCell align="center">{customer.firstName}</TableCell>
-                <TableCell align="center">{customer.lastName}</TableCell>
-                <TableCell align="center">{customer.age}</TableCell>
-                <TableCell align="center">{customer.remarks}</TableCell>
-                <TableCell align="center">
+              <TableRow>
+                <TableCell component="th" align="center" scope="row">{customer.id}</TableCell>
+                <TableCell align="center" key={customer.firstName} >{customer.firstName}</TableCell>
+                <TableCell align="center" key={customer.lastName} >{customer.lastName}</TableCell>
+                <TableCell align="center" key={customer.age} >{customer.age}</TableCell>
+                <TableCell align="center" key={customer.remarks}>{customer.remarks}</TableCell>
+                <TableCell align="center" key={customer.id + 1}>
                   <Button variant="contained" color="secondary" onClick={() => handleDelete(customer.id)}>Delete</Button>
                 </TableCell>
               </TableRow>
@@ -61,7 +60,7 @@ const TableData = ({ customers }) => {
         </Table>
       </TableContainer>
       <div align="right" style={{ marginTop: 25, marginRight: 25 }}>
-      <Typography variant="h7">{`Showing ${total} results`}</Typography>
+        <Typography variant="caption" gutterBottom>{`Showing ${total} results`}</Typography>
       </div>
     </>
   )
