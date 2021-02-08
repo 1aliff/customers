@@ -60,6 +60,7 @@ export const updateCustomer = async (id, firstName, lastName, age, location) => 
         location
       })
     })
+    return await result
   } catch (err) {
     alert(`Something went wrong: ${err}`)
   }
