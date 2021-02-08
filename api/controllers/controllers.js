@@ -28,3 +28,17 @@ export const getCustomerById = (req, res) => {
 
   res.send(foundMe)
 }
+
+export const updateCustomerById = (req, res) => {
+  const { id } = req.params
+  const { firstName, lastName, age, location } = req.body
+
+  const customersToUpdate = customers.find((cust) => cust.id === id)
+
+  if(firstName) customersToUpdate.firstName = firstName
+  if(lastName) customersToUpdate.lastName = lastName
+  if(age) customersToUpdate.age = age
+  if(location) customersToUpdate.location = location
+
+  res.send(`User with ${id} has been updated`)
+}

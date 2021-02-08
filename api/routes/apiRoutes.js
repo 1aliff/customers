@@ -1,5 +1,5 @@
 import express from 'express'
-import { getCustomer, createCustomer, deleteCustomer, getCustomerById } from '../controllers/controllers.js'
+import { getCustomer, createCustomer, deleteCustomer, getCustomerById, updateCustomerById } from '../controllers/controllers.js'
 
 const router = express.Router();
 
@@ -10,6 +10,8 @@ router.post('/', createCustomer)
 router.get('/:id', getCustomerById)
 
 router.delete('/:id', deleteCustomer)
+
+router.patch('/:id', updateCustomerById)
 
 
 export default router;
