@@ -1,6 +1,6 @@
 ## About
-- Build API with NodeJS and Express
-- Connect API into React Web App
+- Build API with NodeJS and Express (API folder)
+- Connect API into React Web App (Client folder)
 
 ## Steps
 Install both dependencies using npm
@@ -14,7 +14,7 @@ Install both dependencies using npm
 Noted that I have used proxy setting in package.json(inside client directory) to redirect my API request to Node server.
 
 ## Improvement
-- I will try to impove by creating a script to run both concurrently
+- I will look into impoving this by creating a script to run both concurrently
 - Minor form checking
 
 As of now, it is working (just without the form checking). Thanks! 
