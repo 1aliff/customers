@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const UpdateForm = ({ customer, handleClose }) => {
+const UpdateForm = ({ customer, handleClose, handleEffect }) => {
   const classes = useStyles();
 
   const { id, firstName, lastName, age, location } = customer
@@ -27,6 +27,14 @@ const UpdateForm = ({ customer, handleClose }) => {
     
     updateCustomer(id, updateFName, updateLName, updateAge, updateLocation).then(res => console.log(res))
 
+    const payload = {
+      firstName : updateFName,
+      lastName: updateLName,
+      age: updateAge,
+      location: updateLocation,
+    }
+    
+    handleEffect(payload)
     handleClose(true)
   }
 

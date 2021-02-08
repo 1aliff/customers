@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const InputForm = ({ handleClose }) => {
+const InputForm = ({ handleEffect, handleClose }) => {
   const classes = useStyles();
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
@@ -22,7 +22,17 @@ const InputForm = ({ handleClose }) => {
   const handleSubmit = e => {
     e.preventDefault()
     
+    if(firstName.length === 0) alert ('Something is missing ;)')
     createCustomer(firstName, lastName, age, location).then(res => console.log(res))
+
+    const payload = {
+      firstName,
+      lastName,
+      age,
+      location
+    }
+
+    handleEffect(payload)
 
     handleClose(true)
   }
@@ -31,10 +41,10 @@ const InputForm = ({ handleClose }) => {
     <>
       <form className={classes.root} noValidate autoComplete="off" onSubmit={handleSubmit}>
         <Typography variant="h5">New Customer Details</Typography>
-        <TextField id="filled-basic" label="First Name" variant="filled" onChange={e => setFirstName(e.target.value)}/>
-        <TextField id="filled-basic" type=""label="Last Name" variant="filled" onChange={e => setLastName(e.target.value)}/>
-        <TextField id="outlined-basic" label="Age" type="number" variant="outlined" onChange={e => setAge(e.target.value)}/>
-        <TextField id="filled-basic" label="Location" variant="filled" onChange={e => setLocation(e.target.value)}/>
+        <TextField label="First Name" variant="filled" onChange={e => setFirstName(e.target.value)}/>
+        <TextField id="filled-required" type=""label="Last Name" variant="filled" onChange={e => setLastName(e.target.value)}/>
+        <TextField id="filled-required" label="Age" type="number" variant="outlined" onChange={e => setAge(e.target.value)}/>
+        <TextField id="filled-required" label="Location" variant="filled" onChange={e => setLocation(e.target.value)}/>
         <Button variant="contained" color="primary" type="submit">Submit</Button>
       </form>      
     </>

@@ -32,7 +32,7 @@ const TABLE_HEADER = [
   'Action'
 ]
 
-const TableData = ({ customers }) => {
+const TableData = ({ handleEffect, customers }) => {
   const classes = useStyles();
   const total = customers.length
   const [open, setOpen] = useState(false) // modal state
@@ -45,7 +45,20 @@ const TableData = ({ customers }) => {
     setCustomerUpdate(customer)
   }
 
-  const handleDelete = (id) => deleteUser(id)
+  const handleDelete = (customer) => {
+    const { id, firstName, lastName, age, location } = customer 
+    
+    deleteUser(id)
+
+    const payload = {
+      firstName,
+      lastName,
+      age,
+      location
+    }
+
+    handleEffect(payload)
+  }
 
   return (
     <>
@@ -78,7 +91,7 @@ const TableData = ({ customers }) => {
                     <Button variant="contained" color="secondary" 
                       onClick={() => 
                         window.confirm(`Are you sure you want to delete this?`) && 
-                        handleDelete(customer.id)}
+                        handleDelete(customer)}
                     > Delete
                     </Button>
                   </TableCell>
@@ -111,6 +124,7 @@ const TableData = ({ customers }) => {
                 id="transition-modal-title"
                 handleClose={handleClose}
                 customer={customerUpdate}
+                handleEffect={handleEffect}
               />
             </div>
           </Fade>

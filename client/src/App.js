@@ -5,12 +5,18 @@ import './App.css';
 
 function App() {
   const [customers, setCustomers] = useState([]) // initalFetch
+  const [updated, setUpdated] = useState([]) // to handle useEffect refresh
+
   console.log('state', customers)
 
   useEffect(() => {
     fetchData();
-    console.log(`mounted`,)
-  },[]) // temp -> will fix this
+    // console.log(`mounted`,)
+  },[updated])
+
+  const handleEffect = payload => setUpdated(payload)
+
+  console.log(`what is it`, updated)
 
   const fetchData = async () => {
     const result = await getAllCustomer();
@@ -19,10 +25,12 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar 
+      <Navbar
+        handleEffect={handleEffect} 
       />
       <TableData 
         customers={customers}
+        handleEffect={handleEffect}
       />
     </div>
   );

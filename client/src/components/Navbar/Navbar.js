@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Navbar = () => {
+const Navbar = ({ handleEffect }) => {
   const classes = useStyles();
   const [open, setOpen]= useState(false) // modal state
 
@@ -63,6 +63,7 @@ const Navbar = () => {
             <InputForm
               id="transition-modal-title"
               handleClose={handleClose}
+              handleEffect={handleEffect}
             />
           </div>
         </Fade>
