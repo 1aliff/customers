@@ -15,6 +15,7 @@ Noted that I have used proxy setting in package.json(inside client directory) to
 
 ## Improvement
 - I will look into impoving this by creating a script to run both concurrently
-- Minor form checking
+- Form Checking
+- Maybe cosmetics changes
 
 As of now, it is working (just without the form checking). Thanks! 
