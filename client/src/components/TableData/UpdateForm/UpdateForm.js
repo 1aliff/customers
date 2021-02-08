@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { TextField, Typography, Button } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles';
-// import { updateCustomer } from '../../../api/index'
+import { updateCustomer } from '../../../api/index'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -14,18 +14,18 @@ const useStyles = makeStyles((theme) => ({
 
 const UpdateForm = ({ customer, handleClose }) => {
   const classes = useStyles();
-  const [firstName, setFirstName] = useState('')
-  const [lastName, setLastName] = useState('')
-  const [age, setAge] = useState('')
-  const [location, setLocation] = useState('')
+  const id = customer.id
+  const [firstName, setFirstName] = useState(customer.firstName)
+  const [lastName, setLastName] = useState(customer.lastName)
+  const [age, setAge] = useState(customer.age)
+  const [location, setLocation] = useState(customer.location)
   
   const handleUpdate = e => {
     e.preventDefault()
-    console.log('updated')
     
-    // updateCustomer(id).then(res => console.log(res))
+    updateCustomer(id, firstName, lastName, age, location).then(res => console.log(res))
 
-    // handleClose(true)
+    handleClose(true)
   }
 
   return (
